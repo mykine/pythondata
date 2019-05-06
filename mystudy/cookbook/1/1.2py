@@ -1,0 +1,7 @@
+#! /usr/local/env python
+#coding:utf-8
+p = ('joyi','joyi@163.com','110','119')
+name,email,*phone = p
+print(name)
+print(email)
+print(phone)
