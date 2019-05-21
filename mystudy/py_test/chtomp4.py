@@ -1,8 +1,24 @@
+#视频页面vedioSRC = 'https://www.finger66.com/mobile/post/5109165?channel=wechatSession&from=singlemessage&isappinstalled=0'
+#放置ts文件所在目录
+tsPath = "mp4/"
+#获取ts文件参数
+hostname = 'https://media.finger66.com'
+tsParamUrl = hostname + '/posts/84222300000/MTU1NjEwNDU0ODI2Nw==.mp4.m3u8'
+import urllib.request
+tsParamData = urllib.request.urlopen(tsParamUrl).read().decode('utf-8')
+# print(tsParamData)
+import re
+pat = '/(.*?).ts'
+tsParamArr = re.compile(pat).findall(tsParamData)
+#爬取ts文件到本地
+for n in range(0,len(tsParamArr)):
+    strArr = tsParamArr[n].split('/')
+    localTSFileName = strArr[len(strArr)-1]+'.ts'
+    tsLink = hostname + '/' + tsParamArr[n] + '.ts'
+    urllib.request.urlretrieve(tsLink, tsPath+localTSFileName )
+    # print(tsLink)
+
 import os
-
-#ts文件所在目录
-tsPath = "/mystudy/py_test/mp4/"
-
 #获取所有的ts文件
 path_list = os.listdir(tsPath)
 
