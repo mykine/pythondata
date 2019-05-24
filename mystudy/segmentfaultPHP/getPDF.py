@@ -11,5 +11,5 @@ pdfList = re.compile(pat).findall(pageHtml)
 # print(pdfList)
 for p in range(0,len(pdfList)):
     link = pdfList[p]+'.pdf'
-    print(link)
-    # urllib.request.urlretrieve(link,savePath+'php进阶'+str(p+1)+'.pdf')
+    #print(link)
+    urllib.request.urlretrieve(link,savePath+'php进阶'+str(p+1)+'.pdf')
