@@ -21,17 +21,6 @@ for n in range(0,len(tsParamArr)):
 import os
 import platform
 
-#获取所有的ts文件
-path_list = os.listdir(tsPath)
-
-#对文件进行排序并将排序后的ts文件路径放入列表中
-path_list.sort()
-li = [os.path.join(tsPath,filename) for filename in path_list]
-#将ts路径并合成一个字符参数
-tsfiles = '|'.join(li)
-
-#print(tsfiles)
-
 #指定输出文件名称
 saveMp4file = tsPath + 'target.mp4'
 #根据不同的系统调用不同的命令合成mp4
@@ -44,5 +33,12 @@ if 'Windows' == platform.system():
     print(res.read())
 else:
     #linux下使用ffmpeg将ts合成mp4文件
+    # 获取所有的ts文件
+    path_list = os.listdir(tsPath)
+    # 对文件进行排序并将排序后的ts文件路径放入列表中
+    path_list.sort()
+    li = [os.path.join(tsPath, filename) for filename in path_list]
+    # 将ts路径并合成一个字符参数
+    tsfiles = '|'.join(li)
     cmd = 'ffmpeg -i "concat:%s" -acodec copy -vcodec copy -absf aac_adtstoasc %s'%    (tsfiles,saveMp4file)
     os.system(cmd)
