@@ -1,0 +1,976 @@
+
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_token" content="LB8URLMPuuYpX96OWr5NNIj4TE1xN18bCoVUBRIz"/>
+    <title>正在播放-Python3数据分析与挖掘实战  - 天善学院</title>
+    <meta name="description" content="">
+    <meta name="author" content="天善智能">
+
+
+    <link media="all" type="text/css" rel="stylesheet"
+          href="/libs/bootstrap/css/bootstrap.css">
+    <link media="all" type="text/css" rel="stylesheet"
+          href="/libs/font-awesome/css/font-awesome.min.css">
+
+    <link media="all" type="text/css" rel="stylesheet"
+          href="/libs/formvalidation/css/formValidation.min.css">
+
+    <link media="all" type="text/css" rel="stylesheet"
+          href="/css/edu/main.css?v=20180411">
+
+    <link media="all" type="text/css" rel="stylesheet"
+          href="/css/edu/play.css?v=20180411">
+
+    <script src="/libs/jquery/1.12.1/jquery.min.js"></script>
+
+    <!-- Fonts -->
+    <!-- Icons-->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+
+
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="top">
+    <div class="logo">
+        <a href="/"><img src="https://edu.hellobi.com/images/logo/xueyuan.png"></a>
+    </div>
+    <div class="course-title">
+        <span class="">正在学习：<a target="_blank"
+                               href="https://edu.hellobi.com/course/110">Python3数据分析与挖掘实战 </a> / python控制流 </span>
+    </div>
+    <div class="user-nav">
+        <a href="https://edu.hellobi.com/course/284" style="margin-right: 40px">限时优惠--Python机器学习全流程项目实战精讲</a>
+                <a href="https://www.hellobi.com/u/172604" target="_blank" class="aw-user-nav-dropdown">
+            <img alt="joyi" src="/uploads/avatar/172604/QEaIxSi6yb.PNG">
+            <span>个人中心</span>
+        </a>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9 play-box">
+
+            <script type="text/javascript" src="/libs/sewise/sewise.player.min.js?v=20180411"></script>
+            <script type="text/javascript">
+                var player='';
+                var currentUser = 'joyi';
+                function getCookie(c_name)
+                {
+                    if (document.cookie.length>0)
+                    {
+                        c_start=document.cookie.indexOf(c_name + "=")
+                        if (c_start!=-1)
+                        {
+                            c_start=c_start + c_name.length+1
+                            c_end=document.cookie.indexOf(";",c_start)
+                            if (c_end==-1) c_end=document.cookie.length
+                            return unescape(document.cookie.substring(c_start,c_end))
+                        }
+                    }
+                    return ""
+                }
+
+                function setCookie(c_name,value,expiredays)
+                {
+                    var exdate=new Date()
+                    exdate.setDate(exdate.getDate()+expiredays)
+                    document.cookie=c_name+ "=" +escape(value)+
+                        ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+                }
+                $(function () {
+                    $name="172604"+"lesson1609"
+                    $time=getCookie($name);
+                    var config = {
+                        /*elid:"container1",//包裹播放器的div容器ID属性值
+                         autostart:true,
+                         url:"video/test.mp4",
+                         skin:"vodWhite"*/
+                        elid: "flybi-player",
+                        server: "vod",
+                        autostart: false,
+                        type: "mp4",
+                        /*buffer: "5",*/
+                        url: "https://tsvideo.oss-cn-hangzhou.aliyuncs.com/%E9%9F%A6%E7%8E%AEpyhton/python%E5%8F%82%E5%9B%A2%E8%AF%BE%E7%A8%8B/3210101904.mp4",
+                        skin: "vodTransparent",
+
+                        claritybtndisplay: "enable",
+                        topbardisplay: "disable",
+                        starttime:$time
+                    };
+                    player = new Sewise.SewisePlayer(config);
+                    player.startup();
+                    player.on("ended", function () {
+                        $(".end-box").show();
+                    });
+
+                    $('#againPlay').click(function () {
+                        setCookie($name,0,60);
+                        location.reload();
+                    })
+
+                    //播放速度加倍
+                    var speed = 1;
+                    var speedbtn = document.getElementById("speed");
+                    player.playbackRate = speed;
+                    for (var i = 0; i < speedbtn.children.length; i++) {
+                        (function (i) {
+                            speedbtn.children[i].onclick = function () {
+
+                                speed = this.value;
+                                //alert(speed);
+                                player.setPlaybackRate(speed);
+                            }
+                        })(i)
+                    }
+
+
+
+                    player.on("playerReady", function () {
+                        $('.forward').click(function () {
+                           // console.log('加速');
+                            player.setPlaybackRate(2.0);
+                        });
+                        $('.backward').click(function () {
+                           // console.log('恢复至原速度');
+                            player.setPlaybackRate(1.0);
+                        });
+                    });
+
+                    var st = 0;
+                    $(document).keydown(function (e) {
+                        if (!e) var e = window.event;
+                        if (e.keyCode == 32) {
+                            if (st == 1) {
+                                player.play();
+                            } else {
+                                player.pause();
+                            }
+                            st = 0;
+                            player.on("pause", function () {
+                                st = 1;
+                            });
+                        }
+                    });
+                    $(".hed").mouseover(function () {
+                        //alert("ddddd");
+                        $("#speed").show();
+                    })
+                    $(".hed").mouseout(function () {
+                        //alert("ddddd");
+                        $("#speed").hide();
+                    })
+
+                    $('.catalog-tit').click(function () {
+                       // $(this).css("color","red");
+
+                         $num=$(".sidebar").scrollTop();
+                        //var exp = new Date();
+                        //exp.setTime(exp.getTime() + 60 * 2000);//cookie过期时间 2分钟
+                        document.cookie = "num"+$num;
+                       // console.log(nums);
+                       //alert($num);
+                    });
+                    window.onload = function (){
+                        function getCookie(cookie_name)
+                        {
+                            var allcookies = document.cookie;
+                            var cookie_pos = allcookies.indexOf(cookie_name);   //索引的长度
+
+// 如果找到了索引，就代表cookie存在，
+// 反之，就说明不存在。
+                            if (cookie_pos != -1)
+                            {
+// 把cookie_pos放在值的开始，只要给值加1即可。
+                                cookie_pos += cookie_name.length ;
+                                //alert(cookie_name.length);
+                                var cookie_end = allcookies.indexOf(";", cookie_pos);
+                                if (cookie_end == -1)
+                                {
+                                    cookie_end = allcookies.length;
+                                }
+                                var value = unescape(allcookies.substring(cookie_pos, cookie_end)); //这里就可以得到你想要的cookie的值了。。。
+                            }
+                            return value;
+                        }
+                        var cookie_val = getCookie("num");
+                       // alert(cookie_val);
+                        $(".sidebar").scrollTop(parseInt(cookie_val))+"px";
+                    }
+                    player.on("start",function(){
+                                                  window.setInterval(function () {
+                            setCookie($name,player.playTime (),60);
+                        },10000);
+                                            });
+
+                })//方法结束
+
+            </script>
+
+            <div id="flybi-player" style="padding-bottom: 40px;">
+            </div>
+            <div class="course-tool">
+                <div style="float: left;margin-top: 10px;margin-left: 15px;">
+
+                    <a target="_blank" style="font-size: 20px;color: red;" href="https://edu.hellobi.com/course/308"> 商业分析全攻略--用数据分析方法解决商业问题</a>
+
+                </div>
+                <input type="hidden" name="scrollv" value="" id="scro"/>
+                <div class="hed">
+                    <span> 播放速度</span>
+                    <div id="speed">
+                        <input type="button" name="speed1" value="2.0" />
+                        <input type="button" name="speed1" value="1.8" />
+                        <input type="button" name="speed1" value="1.5" />
+                        <input type="button" name="speed1" value="1.2" />
+                        <input type="button" name="speed1" value="1" />
+                        <input type="button" name="speed1" value="0.8" />
+                    </div>
+                </div>
+                <ul style="float: right;">
+                    <li class="s-text-color-999">
+                                                    <button class="btn btn-primary finish-btn" data-role="finish-lesson"><span
+                                        class="glyphicon glyphicon-unchecked"></span> 学过了
+                            </button>
+
+                    </li>
+
+
+
+                </ul>
+            </div>
+
+            <div class="end-box" style="display: none;z-index: 999;">
+                <div class="alert alert-play alert-dismissible" role="alert" style="width: 740px;height:420px;padding-bottom: 50px;-moz-box-shadow:3px 4px 5px #333333; -webkit-box-shadow:3px 4px 5px #333333; box-shadow:3px 4px 5px #333333;">
+                    <button type="button" class="close" data-dismiss="alert"><span
+                                aria-hidden="true" style="font-size: 48px;">&times;</span><span class="sr-only">Close</span></button>
+                    <img src="https://edu.hellobi.com/images/edu/play-end.png" alt="" style="margin-top: 30px;margin-left: 50px;">
+                    <span><img src="https://edu.hellobi.com/images/edu/playcode2.png" alt="" style="margin-top: 30px;margin-left: 50px;width: 450px;"></span>
+                    <span><img src="https://edu.hellobi.com/images/edu/play-man.png" alt="" style="margin-top: 10px;margin-left: 50px;"></span>
+
+                                            <a href="https://edu.hellobi.com/course/110/play/lesson/1611"
+                           style="display: block;float: right;height: 40px;font-size: 18px;margin-top: 20px;background-color: #6bbc0f;color: white;"
+                        class="btn">
+                            学习下一课时
+
+                        </a>
+                                        <a class="btn" id="againPlay" href="javascript:void(0)" style="float: right;height: 40px; border: 1px solid #6bbc0f;font-size: 18px;color: #6bbc0f;margin-top: 20px;margin-right: 20px;">重新学习</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 sidebar " >
+            <div class="action-bar">
+                <div class="action-bar-hd">
+                    <ul>
+                        <li class="on"><a>课程目录</a></li>
+                        <li class=""><a>提问讲师</a></li>
+                    </ul>
+                </div>
+                <div class="action-bar-bd">
+                    <div class="ac-catalog" style="display: block;">
+                        <ul id="ul">
+                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节1： Python基础 第一阶段</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1607"><span
+                                                    class="catalog-tit"><span >1.</span> 课程介绍</span></a><span class="catalog-time">16:10 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1608"><span
+                                                    class="catalog-tit"><span >2.</span> 初识python</span></a><span class="catalog-time">18:36 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1610"><span
+                                                    class="catalog-tit"><span >3.</span> python语法基础</span></a><span class="catalog-time">47:00 </span>
+                                    </li>
+                                                                                                                                <li class=" active ">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1609"><span
+                                                    class="catalog-tit"><span >4.</span> python控制流</span></a><span class="catalog-time">32:10 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1611"><span
+                                                    class="catalog-tit"><span >5.</span> 课后答疑</span></a><span class="catalog-time">26:44 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节2： Python基础 第二阶段</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1621"><span
+                                                    class="catalog-tit"><span >6.</span> python函数详解</span></a><span class="catalog-time">32:28 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1622"><span
+                                                    class="catalog-tit"><span >7.</span> python模块</span></a><span class="catalog-time">29:44 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1623"><span
+                                                    class="catalog-tit"><span >8.</span> python文件操作</span></a><span class="catalog-time">22:53 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1625"><span
+                                                    class="catalog-tit"><span >9.</span> python异常值处理</span></a><span class="catalog-time">11:46 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1624"><span
+                                                    class="catalog-tit"><span >10.</span> 课后答疑</span></a><span class="catalog-time">30:29 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节3： Python 爬虫初识</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1633"><span
+                                                    class="catalog-tit"><span >11.</span> 作业讲解及爬虫初识</span></a><span class="catalog-time">61:53 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1634"><span
+                                                    class="catalog-tit"><span >12.</span> 网络爬虫原理</span></a><span class="catalog-time">05:55 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1635"><span
+                                                    class="catalog-tit"><span >13.</span> 正则表达式实战</span></a><span class="catalog-time">59:07 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1636"><span
+                                                    class="catalog-tit"><span >14.</span> 课后答疑</span></a><span class="catalog-time">13:06 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节4： Urllib库实战</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1659"><span
+                                                    class="catalog-tit"><span >15.</span> Urllib库实战</span></a><span class="catalog-time">35:59 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1660"><span
+                                                    class="catalog-tit"><span >16.</span> Urllib库实战（二）</span></a><span class="catalog-time">17:51 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1661"><span
+                                                    class="catalog-tit"><span >17.</span> Urllib库实战（三）</span></a><span class="catalog-time">23:07 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1662"><span
+                                                    class="catalog-tit"><span >18.</span> 爬虫的异常处理</span></a><span class="catalog-time">11:51 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1663"><span
+                                                    class="catalog-tit"><span >19.</span> 爬虫的浏览器伪装技术</span></a><span class="catalog-time">09:27 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1664"><span
+                                                    class="catalog-tit"><span >20.</span> python新闻爬虫实战</span></a><span class="catalog-time">17:07 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1665"><span
+                                                    class="catalog-tit"><span >21.</span> 课后答疑</span></a><span class="catalog-time">15:50 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节5： 爬虫防屏蔽手段之代理服务器实战</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1677"><span
+                                                    class="catalog-tit"><span >22.</span> 爬虫防屏蔽手段之代理服务器实战</span></a><span class="catalog-time">39:24 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1678"><span
+                                                    class="catalog-tit"><span >23.</span> 图片爬虫实战</span></a><span class="catalog-time">60:00 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1679"><span
+                                                    class="catalog-tit"><span >24.</span> 课后答疑</span></a><span class="catalog-time">42:54 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节6： 爬虫实战及Scrapy框架的安装</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1696"><span
+                                                    class="catalog-tit"><span >25.</span> 抓包分析实战1</span></a><span class="catalog-time">59:57 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1697"><span
+                                                    class="catalog-tit"><span >26.</span> 抓包分析实战2</span></a><span class="catalog-time">28:15 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1698"><span
+                                                    class="catalog-tit"><span >27.</span> 微信爬虫实战</span></a><span class="catalog-time">14:30 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1699"><span
+                                                    class="catalog-tit"><span >28.</span> 多线程爬虫实战</span></a><span class="catalog-time">22:40 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1700"><span
+                                                    class="catalog-tit"><span >29.</span> Scrapy框架的安装</span></a><span class="catalog-time">10:51 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1701"><span
+                                                    class="catalog-tit"><span >30.</span> 课后答疑</span></a><span class="catalog-time">21:40 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节7： Scrapy爬虫</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1723"><span
+                                                    class="catalog-tit"><span >31.</span> Scrapy框架常见命令实战</span></a><span class="catalog-time">53:15 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1719"><span
+                                                    class="catalog-tit"><span >32.</span> 第一个Scrapy爬虫</span></a><span class="catalog-time">34:19 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1721"><span
+                                                    class="catalog-tit"><span >33.</span> Scrapy自动爬虫实战</span></a><span class="catalog-time">40:17 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1722"><span
+                                                    class="catalog-tit"><span >34.</span> 课后答疑</span></a><span class="catalog-time">24:28 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节8： 用Scrapy爬取网站的数据</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1768"><span
+                                                    class="catalog-tit"><span >35.</span> 天善智能课程自动爬虫实战</span></a><span class="catalog-time">40:54 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1769"><span
+                                                    class="catalog-tit"><span >36.</span> 自动模拟登陆爬虫实战</span></a><span class="catalog-time">50:20 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1770"><span
+                                                    class="catalog-tit"><span >37.</span> 当当商城爬虫实战</span></a><span class="catalog-time">37:10 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1771"><span
+                                                    class="catalog-tit"><span >38.</span> 课后答疑</span></a><span class="catalog-time">24:33 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节9： 补充以及作业讲解</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1797"><span
+                                                    class="catalog-tit"><span >39.</span> 补充内容</span></a><span class="catalog-time">32:15 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1798"><span
+                                                    class="catalog-tit"><span >40.</span> 上节课作业讲解</span></a><span class="catalog-time">35:10 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1799"><span
+                                                    class="catalog-tit"><span >41.</span> 答疑</span></a><span class="catalog-time">48:32 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节10： Python数据分析与挖掘技术基础</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1824"><span
+                                                    class="catalog-tit"><span >42.</span> 快速了解数据分析与数据挖掘</span></a><span class="catalog-time">24:44 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1825"><span
+                                                    class="catalog-tit"><span >43.</span> 数据分析与挖掘相关模块简介与安装</span></a><span class="catalog-time">31:32 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1826"><span
+                                                    class="catalog-tit"><span >44.</span> 相关模块的使用</span></a><span class="catalog-time">38:40 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1827"><span
+                                                    class="catalog-tit"><span >45.</span> Python数据导入实战</span></a><span class="catalog-time">36:07 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1828"><span
+                                                    class="catalog-tit"><span >46.</span> 答疑</span></a><span class="catalog-time">15:46 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节11： Python数据可视化分析实现</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1868"><span
+                                                    class="catalog-tit"><span >47.</span> matplotlib基础 折线图/散点图</span></a><span class="catalog-time">45:55 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1869"><span
+                                                    class="catalog-tit"><span >48.</span> 直方图</span></a><span class="catalog-time">33:32 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1870"><span
+                                                    class="catalog-tit"><span >49.</span> 读取和讯博客的数据并可视化分析</span></a><span class="catalog-time">17:40 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1871"><span
+                                                    class="catalog-tit"><span >50.</span> 答疑</span></a><span class="catalog-time">11:30 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节12： Python数据清洗、集成与变换</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1892"><span
+                                                    class="catalog-tit"><span >51.</span> 数据探索与数据与清洗概述（一）</span></a><span class="catalog-time">47:39 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1893"><span
+                                                    class="catalog-tit"><span >52.</span> 数据探索与数据与清洗概述（二）</span></a><span class="catalog-time">13:00 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1894"><span
+                                                    class="catalog-tit"><span >53.</span> 数据分布探索实战</span></a><span class="catalog-time">28:12 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1895"><span
+                                                    class="catalog-tit"><span >54.</span> 数据集成实战</span></a><span class="catalog-time">09:11 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1896"><span
+                                                    class="catalog-tit"><span >55.</span> 答疑</span></a><span class="catalog-time">08:46 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节13： 数据转换、属性构造、数据规约</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1918"><span
+                                                    class="catalog-tit"><span >56.</span> 数据转换</span></a><span class="catalog-time">59:13 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1919"><span
+                                                    class="catalog-tit"><span >57.</span> 属性构造</span></a><span class="catalog-time">13:20 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1920"><span
+                                                    class="catalog-tit"><span >58.</span> 数据规约</span></a><span class="catalog-time">33:56 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1921"><span
+                                                    class="catalog-tit"><span >59.</span> 答疑</span></a><span class="catalog-time">05:01 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节14： 文本挖掘</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1985"><span
+                                                    class="catalog-tit"><span >60.</span> 文本挖掘 一</span></a><span class="catalog-time">53:23 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1986"><span
+                                                    class="catalog-tit"><span >61.</span> 文本挖掘 二</span></a><span class="catalog-time">46:56 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/1987"><span
+                                                    class="catalog-tit"><span >62.</span> 答疑</span></a><span class="catalog-time">13:46 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节15： 文本相似度分析</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2043"><span
+                                                    class="catalog-tit"><span >63.</span> 文本相似度分析一</span></a><span class="catalog-time">35:58 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2044"><span
+                                                    class="catalog-tit"><span >64.</span> 文本相似度分析二</span></a><span class="catalog-time">24:05 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2049"><span
+                                                    class="catalog-tit"><span >65.</span> 文本相似度分析三</span></a><span class="catalog-time">50:20 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2045"><span
+                                                    class="catalog-tit"><span >66.</span> 答疑</span></a><span class="catalog-time">11:57 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节16： Python数据分析与挖掘实战 上</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2069"><span
+                                                    class="catalog-tit"><span >67.</span> Python数据建模概述</span></a><span class="catalog-time">04:38 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2070"><span
+                                                    class="catalog-tit"><span >68.</span> Python数据分类实现过程</span></a><span class="catalog-time">08:08 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2071"><span
+                                                    class="catalog-tit"><span >69.</span> 常见分类算法</span></a><span class="catalog-time">01:34 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2130"><span
+                                                    class="catalog-tit"><span >70.</span> knn算法（补录）</span></a><span class="catalog-time">14:04 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2072"><span
+                                                    class="catalog-tit"><span >71.</span> KNN算法与贝克斯方法</span></a><span class="catalog-time">36:23 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2073"><span
+                                                    class="catalog-tit"><span >72.</span> 手写体数字识别</span></a><span class="catalog-time">62:21 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2074"><span
+                                                    class="catalog-tit"><span >73.</span> 答疑</span></a><span class="catalog-time">14:46 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节17： Python数据建模与分类实现 下</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2117"><span
+                                                    class="catalog-tit"><span >74.</span> 贝叶斯算法 上</span></a><span class="catalog-time">46:34 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2129"><span
+                                                    class="catalog-tit"><span >75.</span> 贝叶斯课程 （补录）</span></a><span class="catalog-time">03:42 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2118"><span
+                                                    class="catalog-tit"><span >76.</span> 贝叶斯算法 下</span></a><span class="catalog-time">10:17 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2119"><span
+                                                    class="catalog-tit"><span >77.</span> 回归算法</span></a><span class="catalog-time">48:23 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2120"><span
+                                                    class="catalog-tit"><span >78.</span> 决策树</span></a><span class="catalog-time">26:25 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2121"><span
+                                                    class="catalog-tit"><span >79.</span> 答疑</span></a><span class="catalog-time">03:57 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节18： Python数据分析与挖掘聚类实现与回归分析</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2208"><span
+                                                    class="catalog-tit"><span >80.</span> 决策树</span></a><span class="catalog-time">52:07 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2209"><span
+                                                    class="catalog-tit"><span >81.</span> 聚类</span></a><span class="catalog-time">59:26 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2210"><span
+                                                    class="catalog-tit"><span >82.</span> 答疑</span></a><span class="catalog-time">14:18 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节19： Python数据分析与挖掘实战</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2218"><span
+                                                    class="catalog-tit"><span >83.</span> 贝叶斯应用</span></a><span class="catalog-time">43:30 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2219"><span
+                                                    class="catalog-tit"><span >84.</span> 人工神经网络理论基础</span></a><span class="catalog-time">46:46 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2220"><span
+                                                    class="catalog-tit"><span >85.</span> 人工神经网络实现实战</span></a><span class="catalog-time">60:00 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2221"><span
+                                                    class="catalog-tit"><span >86.</span> 答疑</span></a><span class="catalog-time">14:58 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节20： Python降维技术与大型数据分析与挖掘项目实训上</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2242"><span
+                                                    class="catalog-tit"><span >87.</span> Apriori算法与项目实战</span></a><span class="catalog-time">56:43 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2243"><span
+                                                    class="catalog-tit"><span >88.</span> 社交网络项目实战</span></a><span class="catalog-time">60:00 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2244"><span
+                                                    class="catalog-tit"><span >89.</span> 答疑</span></a><span class="catalog-time">39:37 </span>
+                                    </li>
+                                                                                                                                <li class="chapters">
+                                        <i class="icon icon-list"></i>章节21： Python降维技术与大型数据分析与挖掘项目实训下</li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2281"><span
+                                                    class="catalog-tit"><span >90.</span> 微博接口开发上</span></a><span class="catalog-time">33:20 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2282"><span
+                                                    class="catalog-tit"><span >91.</span> 微博接口开发下</span></a><span class="catalog-time">23:49 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2283"><span
+                                                    class="catalog-tit"><span >92.</span> PhantomJS 上</span></a><span class="catalog-time">59:59 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2284"><span
+                                                    class="catalog-tit"><span >93.</span> PhantomJS 下</span></a><span class="catalog-time">05:42 </span>
+                                    </li>
+                                                                                                                                <li class="">
+                                        <a href="https://edu.hellobi.com/course/110/play/lesson/2285"><span
+                                                    class="catalog-tit"><span >94.</span> 文本分类及答疑</span></a><span class="catalog-time">51:21 </span>
+                                    </li>
+                                                                                    </ul>
+                        <a href="https://edu.hellobi.com/course/explore?c1=33" style="color: #666666;">福利：更多免费课程戳这里</a>
+                    </div>
+
+                    <div class="ac-ask aw-feed-list" style="display: none;">
+
+                        <form action="https://edu.hellobi.com/course/110/thread/store" method="post"
+                              id="quick_publish_answer">
+                            <input type="hidden" name="_token" value="LB8URLMPuuYpX96OWr5NNIj4TE1xN18bCoVUBRIz">
+                            <input type="hidden" name="courseId" value="110">
+                            <input type="hidden" name="lessonId" value="1609">
+                            <input type="hidden" name="type" value="question">
+                            <div class="form-group">
+                                <input type="text" id="thread_title" name="title" required="required"
+                                       style="margin-bottom: 5px;"
+                                       class="form-control" placeholder="标题，用一句话说清你的问题" data-display="标题">
+                            </div>
+                            <div class="form-group">
+                            <textarea name="content" class="form-control" rows="4"
+                                      placeholder="问题描述等详细信息..."></textarea>
+                            </div>
+                            <div class="clearfix" style="margin: 5px 0;">
+                                <button type="submit" class="btn btn-small btn-success pull-right">提问</button>
+                            </div>
+                        </form>
+
+                        <div class="course-discuss">
+                            <ul class="media-list">
+                                                                    <li class="media">
+                                        <a class="user-link user-avatar-link pull-left media-object media-object-small"
+                                           href="https://www.hellobi.com/u/184713" target="_blank">
+                                            <img src="https://edu.hellobi.com/images/avatar.png">
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="mbm">
+                                                <span class="label label-info" title="问答帖">问</span>
+                                                <a class="js-nav" target="_blank"
+                                                   href="https://edu.hellobi.com/course/110/thread/2289"><strong>老师为什么我按照您的代码运行出来的和您的不一样呢？</strong></a>
+                                            </div>
+
+                                            <div class="text-muted text-normal">
+                                                by <a class="link-muted" target="_blank"
+                                                      href="https://www.hellobi.com/u/184713">一击击破</a>
+                                                                                                    <span class="bullet">•</span>
+                                                    <span>2019-03-29 20:01</span>
+                                                                                                <span class="bullet">•</span>
+                                                <span>1浏览</span>
+                                                                                                    <span class="bullet">•</span>
+                                                    <a class="link-muted" target="_blank"
+                                                       href="https://edu.hellobi.com/course/110/play/lesson/1609"
+                                                       title="python控制流">课时4</a>
+                                                                                            </div>
+                                        </div>
+                                    </li>
+                                                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="/libs/jquery.SuperSlide.2.1.1.js"></script>
+
+<script src="/libs/formvalidation/js/formValidation.min.js"></script>
+<script src="/libs/formvalidation/js/framework/bootstrap.min.js"></script>
+<script src="/libs/formvalidation/js/language/zh_CN.js"></script>
+<script src="/libs/jquery.form.min.js"></script>
+
+
+
+<script type="text/javascript">
+    jQuery(".action-bar").slide({
+        titCell: ".action-bar-hd li",
+        mainCell: ".action-bar-bd",
+        delayTime: 0,
+        trigger: "click"
+    });
+    var bodyHeight = $("body").height();
+    /*$("#flybi-player").height(bodyHeight-50);*/
+    $(function () {
+
+        $('.close').click(function () {
+            $(".end-box").hide();
+        });
+
+        $('#quick_publish_answer').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                title: {
+                    validators: {
+                        notEmpty: {
+                            message: '请输入问题标题'
+                        }
+                    }
+                },
+                content: {
+                    validators: {
+                        notEmpty: {
+                            message: '请输入问题描述等详细信息'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.fv', function (e) {
+            // Prevent form submission
+            e.preventDefault();
+
+            var $form = $(e.target);
+            $form.ajaxSubmit({
+                // You can change the url option to desired target
+                url: $form.attr('action'),
+                dataType: 'json',
+                success: function (responseText, statusText, xhr, $form) {
+                    $form.clearForm();
+                    // Process the response returned by the server ...
+                    console.log(responseText);
+                    console.log(statusText);
+                }
+            });
+        });
+
+        $('[data-role=finish-lesson]').click(function () {
+            var btn = $(this);
+
+            if (btn.hasClass('btn-success')) {
+
+                var url = 'https://edu.hellobi.com/course/110/lesson/1609/learn/cancel';
+
+                $.post(url, {_token: $('meta[name="_token"]').attr('content')}, function (response) {
+
+                    if (response.status) {
+                        $('#course-learned-modal').modal('show');
+                    }
+
+                    btn.removeClass('btn-success');
+                    btn.find('.glyphicon').removeClass('glyphicon-check').addClass('glyphicon-unchecked');
+
+                }, 'json');
+
+            } else {
+
+                var url = 'https://edu.hellobi.com/course/110/lesson/1609/learn/finish';
+
+                $.post(url, {_token: $('meta[name="_token"]').attr('content')}, function (response) {
+
+                    if (response.status) {
+                        $('#course-learned-modal').modal('show');
+                    }
+
+                    btn.addClass('btn-success');
+                    btn.find('.glyphicon').removeClass('glyphicon-unchecked').addClass('glyphicon-check');
+
+                }, 'json');
+
+            }
+
+
+        });
+
+
+        function addUsernameOnVideo(username){
+            var time_show_min = 3000,
+                time_show_max = 5000,
+                time_inter_min = 30000,
+                time_inter_max = 60000;
+
+            //$('video').each(function(){
+                var _video = $('#flybi-player'),
+                    _wrap  = _video.parent();
+
+                var timer_out = null,
+                    timer_inter = null;
+
+                if( _wrap.css('position') != 'absolute' ){
+                    _wrap.css('position', 'relative');
+                }
+
+                _wrap.append('<span class="usernameSpan">'+username+'</span>');
+                var _username = _wrap.children('.usernameSpan');
+                _username.css({'position': 'absolute', 'whiteSpace': 'nowrap', 'color': 'rgb(162, 181, 205)', 'display': 'none'});
+
+                var w1 = _username.width(),
+                    h1 = _username.height(),
+                    w2 = _video.width(),
+                    h2 = _video.height();
+
+                $(window).resize(function(){
+                    w2 = _video.width();
+                    h2 = _video.height();
+                });
+                /*_video[0].addEventListener('webkitfullscreenchange',function(){
+                    w2 = _video.width();
+                    h2 = _video.height();
+                });
+
+                _video[0].addEventListener('play',function(){
+                    showInter();
+                });
+
+                _video[0].addEventListener('pause',function(){
+                    showEnd();
+                });
+
+                _video[0].addEventListener('ended',function(){
+                    showEnd();
+                });*/
+
+            player.on("start",function(){
+                showInter();
+            });
+
+            player.on("ended",function(){
+                showEnd();
+            });
+
+                function showSet(){
+                    clearTimeout(timer_out);
+                    var maxLeft = w2-w1,
+                        maxTop = h2-h1;
+
+                    var left = Math.round(maxLeft * Math.random()),
+                        top  = Math.round(maxTop * Math.random()),
+                        time_show = time_show_min + Math.round((time_show_max - time_show_min) * Math.random());
+
+                    _username.css({'left': left, 'top': top}).show();
+                    timer_out = setTimeout(function(){
+                        _username.hide();
+                    },time_show);
+                }
+
+                function showInter(){
+                    clearTimeout(timer_inter);
+                    var time_inter = time_inter_min + Math.round((time_inter_max - time_inter_min) * Math.random());
+                    timer_inter = setInterval(showSet, time_inter);
+                }
+
+                function showEnd(){
+                    clearTimeout(timer_out);
+                    clearTimeout(timer_inter);
+                    timer_out = null;
+                    timer_inter = null;
+                    _username.hide();
+                }
+            //});
+        }
+
+        addUsernameOnVideo(currentUser);
+    })
+</script>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=31001726" charset="UTF-8"></script>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=56050266" charset="UTF-8"></script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?2d2777148aa1618ef79baf55c005df84";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</body>
+</html>
