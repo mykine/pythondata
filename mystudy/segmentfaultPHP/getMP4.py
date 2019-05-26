@@ -76,12 +76,12 @@ for n in range(0,len(m3u8urlList)):
 	if m3u8urlList[n] != '':
 		#下载TS
 		m3u8link = m3u8Host +  m3u8urlList[n]
-		#downObj.downTStoMP4(m3u8link,saveTSpath,tsHost)
+		downObj.downTStoMP4(m3u8link,saveTSpath,tsHost)
 		#转化成mp4
 		downObj.mergeTsMp4(saveTSpath, targetMP4Path)
 
 	else:
-		# downObj.downMP4(mp4url2,targetMP4Path)
+		downObj.downMP4(mp4url2,targetMP4Path)
 		print("直接下载mp4")
 
 

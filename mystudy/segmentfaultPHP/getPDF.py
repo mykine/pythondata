@@ -4,7 +4,7 @@ import urllib.request
 import re
 
 url = 'https://mengkang.net/1003.html'
-savePath = '/Users/jianyi/Downloads/books/'
+savePath = 'pdf/'
 pageHtml = urllib.request.urlopen(url).read().decode('utf-8')
 pat = '<br><a href="(.*?).pdf">'
 pdfList = re.compile(pat).findall(pageHtml)
